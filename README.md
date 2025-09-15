@@ -15,155 +15,19 @@ In C++, inheritance is a key feature of object-oriented programming that allows 
 
 1. Single Inheritance: Single inheritance in C++ is the simplest form of inheritance where a single derived class inherits from one base class. It allows the derived class to reuse the data members and member functions of the base class, reducing code duplication. With single inheritance, a clear parent-child relationship is formed, making the program easy to understand and maintain. Access specifiers like public, private, and protected define how the base class members are accessible in the derived class.
 
-''' 
-#include <iostream>
-using namespace std;
 
-// Base Class
-class Base {
-public:
-    // base class members
-    void baseFunction() {
-        cout << "Base class function" << endl;
-    }
-};
-
-// Derived Class (inherits Base)
-class Derived : access_specifier Base {
-public:
-    // derived class members
-    void derivedFunction() {
-        cout << "Derived class function" << endl;
-    }
-};
-
-int main() {
-    Derived obj;           // object of derived class
-    obj.baseFunction();    // access base class function
-    obj.derivedFunction(); // access derived class function
-    return 0;
-}
-'''
 
 2. Multiple Inheritance: Multiple inheritance in C++ is a type of inheritance where a single derived class inherits from more than one base class. This allows the derived class to combine features and functionalities of multiple classes into one. It promotes code reusability but can also lead to ambiguity issues, such as the Diamond Problem, when the same member is inherited from more than one base class. C++ resolves such issues using scope resolution or virtual inheritance. Multiple inheritance is useful when a class logically needs to represent properties of different classes at the same time.
 
-'''
-#include <iostream>
-using namespace std;
 
-// First Base Class
-class Base1 {
-public:
-    void base1Function() {
-        cout << "This is Base1 class" << endl;
-    }
-};
-
-// Second Base Class
-class Base2 {
-public:
-    void base2Function() {
-        cout << "This is Base2 class" << endl;
-    }
-};
-
-// Derived Class inheriting from both Base1 and Base2
-class Derived : access_specifier1 Base1, access_specifier2 Base2 {
-public:
-    void derivedFunction() {
-        cout << "This is Derived class" << endl;
-    }
-};
-
-int main() {
-    Derived obj;             // object of derived class
-    obj.base1Function();     // from Base1
-    obj.base2Function();     // from Base2
-    obj.derivedFunction();   // from Derived
-    return 0;
-}
-'''
 
 3. Multilevel Inheritance: Multilevel inheritance in C++ is a type of inheritance where a class is derived from another derived class, forming a chain of inheritance. The base class passes its properties to the derived class, which then acts as a base class for another class. This helps in reusing code across multiple levels and creating a step-by-step hierarchy. It also demonstrates how features can be inherited through multiple generations of classes.
 
 '''
-#include <iostream>
-using namespace std;
 
-// Base Class
-class Base {
-public:
-    void baseFunction() {
-        cout << "This is Base class" << endl;
-    }
-};
-
-// Intermediate Derived Class
-class Derived1 : access_specifier Base {
-public:
-    void derived1Function() {
-        cout << "This is First Derived class" << endl;
-    }
-};
-
-// Final Derived Class
-class Derived2 : access_specifier Derived1 {
-public:
-    void derived2Function() {
-        cout << "This is Second Derived class" << endl;
-    }
-};
-
-int main() {
-    Derived2 obj;            // object of final derived class
-    obj.baseFunction();      // from Base
-    obj.derived1Function();  // from Derived1
-    obj.derived2Function();  // from Derived2
-    return 0;
-}
-'''
 4. Hierarchical Inheritance: Hierarchical inheritance in C++ is a type of inheritance where multiple derived classes inherit from a single base class. This means that the base class shares its properties and functions with all the derived classes. It is useful when different classes need to use common features defined in one base class but also have their own unique functionalities. Hierarchical inheritance promotes code reusability and helps in organizing programs in a tree-like structure. It also forms the basis for concepts like function overriding and polymorphism in C++.
 
-'''
-#include <iostream>
-using namespace std;
 
-// Base Class
-class Base {
-public:
-    void baseFunction() {
-        cout << "This is Base class" << endl;
-    }
-};
-
-// First Derived Class
-class Derived1 : access_specifier Base {
-public:
-    void derived1Function() {
-        cout << "This is Derived1 class" << endl;
-    }
-};
-
-// Second Derived Class
-class Derived2 : access_specifier Base {
-public:
-    void derived2Function() {
-        cout << "This is Derived2 class" << endl;
-    }
-};
-
-int main() {
-    Derived1 obj1;   // object of first derived class
-    obj1.baseFunction();
-    obj1.derived1Function();
-
-    Derived2 obj2;   // object of second derived class
-    obj2.baseFunction();
-    obj2.derived2Function();
-
-    return 0;
-}
-'''
 
 5. Hybrid Inheritance: Hybrid inheritance in C++ is a combination of two or more types of inheritance, such as multiple, multilevel, or hierarchical. It is used when a class needs to derive features from different inheritance models at the same time. While it increases flexibility and reusability, it may also lead to ambiguity issues like the Diamond Problem, which can be resolved using virtual inheritance.
 
@@ -173,91 +37,13 @@ In C++, access specifiers control the accessibility of class members (data and f
 # -->Public:
 In C++, **public** members of a class are accessible from anywhere in the program, including outside the class and in derived classes. They can be directly used by objects of the class or its derived classes. Public access allows **free interaction** with class members while maintaining the functionality of the class. It is typically used for functions or data that need to be **accessible by all parts of the program**.
 
-''' 
-#include <iostream>
-using namespace std;
-
-class Example {
-public:             // Public members
-    int data;       // Public data member
-    void display() {  // Public member function
-        cout << "Data: " << data << endl;
-    }
-};
-
-int main() {
-    Example obj;    // Create object of class
-    obj.data = 10;  // Accessing public data member
-    obj.display();  // Accessing public function
-    return 0;
-}
-'''
-
 # -->Private:
 In C++, **private** members of a class are accessible **only within the class** in which they are declared. They cannot be accessed directly by objects of the class or by derived classes. Private access is used to **restrict direct access** to sensitive data, ensuring **data encapsulation and security**. It helps in controlling how class members are modified or used, typically through public member functions.
 
-'''
-#include <iostream>
-using namespace std;
 
-class Example {
-private:            // Private members
-    int data;       // Private data member
-    void display() {  // Private member function
-        cout << "Data: " << data << endl;
-    }
-
-public:             // Public function to access private members
-    void setData(int value) {
-        data = value;  // Accessing private data member
-    }
-    void showData() {
-        display();     // Calling private function
-    }
-};
-
-int main() {
-    Example obj;    
-    obj.setData(10); // Access private member via public function
-    obj.showData();  // Display value using public function
-    // obj.data = 10; // Error: Cannot access private member directly
-    return 0;
-}
-'''
 
 # -->Protected:
 In C++, **protected** members of a class are accessible **within the class** and by its **derived classes**, but not by objects outside the class. Protected access allows derived classes to use and modify base class members while keeping them hidden from the outside world. It provides a balance between **private and public access**, supporting **controlled inheritance** and **data encapsulation**.
-
-'''
-#include <iostream>
-using namespace std;
-
-class Base {
-protected:           // Protected members
-    int data;        // Protected data member
-    void display() { // Protected member function
-        cout << "Data: " << data << endl;
-    }
-};
-
-class Derived : public Base {
-public:
-    void setData(int value) {
-        data = value;   // Accessing protected data member
-    }
-    void showData() {
-        display();      // Calling protected function
-    }
-};
-
-int main() {
-    Derived obj;
-    obj.setData(20);   // Setting value using derived class function
-    obj.showData();    // Displaying value using derived class function
-    // obj.data = 20;  // Error: Cannot access protected member directly
-    return 0;
-}
-'''
 
 Access specifiers are crucial for data encapsulation, security, and controlled inheritance, allowing programmers to define which parts of a class are exposed or hidden. They help in designing robust and maintainable object-oriented programs.
 
